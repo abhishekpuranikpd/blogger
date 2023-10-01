@@ -3,7 +3,7 @@ import { signOut } from 'next-auth/react';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-const Navbar = () => {
+const Hnavbar = () => {
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -16,7 +16,7 @@ const Navbar = () => {
       <div className="container flex justify-between h-16 mx-auto">
         <a
           rel="noopener noreferrer"
-          href="/blog"
+          href="/"
           aria-label="Back to homepage"
           className="flex items-center p-2 border border-red-500 text-white px-3 py-1 rounded"
         >
@@ -49,7 +49,7 @@ const Navbar = () => {
               <li className="flex">
                 <a
                   rel="noopener noreferrer"
-                  href="/blog/"
+                  href="/"
                   className={`flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-violet-400 dark:border-violet-400 ${
                     router.pathname === '/blog/' ? 'border-violet-400' : ''
                   }`}
@@ -60,32 +60,27 @@ const Navbar = () => {
               <li className="flex">
                 <a
                   rel="noopener noreferrer"
-                  href="/blog/new"
+                  href="/auth/login"
                   className={`flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-violet-400 dark:border-violet-400 ${
                     router.pathname === '/blog/new' ? 'border-violet-400' : ''
                   }`}
                 >
-                  Create Post
+                  Login
                 </a>
               </li>
               <li className="flex">
                 <a
                   rel="noopener noreferrer"
-                  href="/profile"
+                  href="/auth/register"
                   className={`flex items-center px-4 -mb-1 border-b-2 dark:border-transparent ${
                     router.pathname === '/profile' ? 'border-violet-400' : ''
                   }`}
                 >
-                  Profile
+                  Register
                 </a>
               </li>
             </ul>
-            <button
-              className="self-center px-8 py-3 rounded"
-              onClick={() => signOut({ callbackUrl: "/auth/login" })}
-            >
-              Sign Out
-            </button>
+            
           </div>
         )}
         {/* Desktop Menu */}
@@ -93,7 +88,7 @@ const Navbar = () => {
           <li className="flex">
             <a
               rel="noopener noreferrer"
-              href="/blog"
+              href="/"
               className={`flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-violet-400 dark:border-violet-400 ${
                 router.pathname === '/blog' ? 'border-violet-400' : ''
               }`}
@@ -104,37 +99,32 @@ const Navbar = () => {
           <li className="flex">
             <a
               rel="noopener noreferrer"
-              href="/blog/new"
+              href="/auth/login"
               className={`flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-violet-400 dark:border-violet-400 ${
                 router.pathname === '/blog/new' ? 'border-violet-400' : ''
               }`}
             >
-              Create Post
+Login
             </a>
           </li>
           <li className="flex">
             <a
               rel="noopener noreferrer"
-              href="/profile"
+              href="/auth/register"
               className={`flex items-center px-4 -mb-1 border-b-2 dark:border-transparent ${
                 router.pathname === '/profile' ? 'border-violet-400' : ''
               }`}
             >
-              Profile
+              Register
             </a>
           </li>
         </ul>
         <div className="items-center flex-shrink-0 hidden lg:flex">
-          <button
-            className="self-center px-8 py-3 rounded"
-            onClick={() => signOut({ callbackUrl: "/auth/login" })}
-          >
-            Sign Out
-          </button>
+         
         </div>
       </div>
     </header>
   );
 };
 
-export default Navbar;
+export default Hnavbar;

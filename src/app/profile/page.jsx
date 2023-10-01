@@ -4,6 +4,7 @@ import { db } from '../../lib/db';
 import { redirect } from 'next/navigation';
 import Navbar from '../../components/navbar';
 import Link from 'next/link';
+import Deleteblog from '../../components/deleteblog'
 
 const ProfilePage = async () => {
   const user = await getCurrentUser();
@@ -53,14 +54,14 @@ const ProfilePage = async () => {
                       {post.title}
                     </h3>
                     <p className="text-gray-700">{post.description}</p>
-                    <div className="absolute top-2 right-2 space-x-2">
+                    <div className="absolute top-2 right-16 space-x-2">
                      <Link href={`/blog/${post.id}/edit`} ><button className="border border-blue-500 text-blue-500 px-3 py-1 rounded">
                         Edit
-                      </button></Link>
-                      <button className="border border-red-500 text-red-500 px-3 py-1 rounded">
-                        Delete
-                      </button>
-                    </div>
+                      </button></Link> </div>
+                      <div className="absolute  right-16 space-x-2">
+                      <Deleteblog id={post.id} />
+                   </div>
+                    
                   </div>
                 </div>
               ))}

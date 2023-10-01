@@ -1,44 +1,33 @@
 "use client"
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { db } from '../lib/db';
+import { useRouter } from 'next/navigation';
 
-const UpdateForm = () => {
-  const router = useRouter();
-  const { id } = router.query; // Get the post ID from the URL
 
+
+const EditpageForm = ({data}) => {
+   
+   
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
 
-  useEffect(() => {
-    const getPostDetails = async () => {
-      try {
-        const response = await fetch(`/api/blog/${id}`);
-        if (response.ok) {
-          const postData = await response.json();
-          setTitle(postData.title);
-          setDescription(postData.description);
-          setCategory(postData.category);
-        } else {
-          // Handle error (post not found)
-          console.error('Error fetching post details');
-        }
-      } catch (error) {
-        console.error('Error fetching post details:', error);
-      }
-    };
+  
 
-    if (id) {
-      getPostDetails();
+  useEffect(() => {
+    const setformdata =()=>{
+     setTitle(data.title)
+     setDescription(data.description)
+     setCategory(data.category)
     }
-  }, [id]); // Add 'id' as a dependency to re-fetch data when it changes
+
+    setformdata()
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await fetch(`/api/blog/${id}`, {
+      const res = await fetch(`/api/blog/${data.id}`, {
         method: 'PUT',
         body: JSON.stringify({ title, description, category }),
         headers: {
@@ -50,7 +39,6 @@ const UpdateForm = () => {
         alert('Blog Updated!');
         router.push('/blog');
       } else {
-        // Handle error
         console.error('Error updating blog post');
       }
     } catch (error) {
@@ -62,7 +50,7 @@ const UpdateForm = () => {
     <div className="flex justify-center bg-gray-700 items-center h-screen">
       <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
         <h1 className="text-3xl font-medium text-black mb-6">Update Post</h1>
-        <form noValidate action="" className="space-y-6" onSubmit={handleSubmit}>
+        <form  className="space-y-6" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="title" className="block mb-2 text-sm font-bold">
               Title
@@ -116,4 +104,4 @@ const UpdateForm = () => {
   );
 };
 
-export default UpdateForm;
+export default EditpageForm;
