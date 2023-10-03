@@ -29,13 +29,13 @@ export default async function Home() {
                     {post.title}
                   </h1>
                   <p className="text-gray-700 leading-relaxed mb-5">
-                    {post.description.slice(0, 100)}
+                    {post.description}
                   </p>
                   <div className="flex justify-between items-center">
   <h2 className="text-indigo-500 text-xs font-medium tracking-widest mb-4">
     {post.category}
   </h2>
-  <Link href={`/blog/${post.id}`} className='text-indigo-500 hover:underline'>Read More</Link>
+  {/* <Link href={`/blog/${post.id}`} className='text-indigo-500 hover:underline'>Read More</Link> */}
 </div>
                   <br />
                   <span className="text-gray-900">Author: {post.user.name}</span>
